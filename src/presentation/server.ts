@@ -18,6 +18,10 @@ export class Server {
   }
 
   async start() {
+    // Middlewares
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+
     this.app.use(this.routes);
     this.app.listen(this.port, () => {
       console.log(`Server started on port: ${this.port}`);
